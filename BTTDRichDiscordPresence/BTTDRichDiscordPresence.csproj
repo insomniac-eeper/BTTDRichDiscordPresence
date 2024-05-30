@@ -70,6 +70,15 @@
       </Folder>
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="../external/discordsdk/native/discord_game_sdk.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="../external/discordsdk/native/discord_game_sdk.dll.lib">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
     <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">
         <ItemGroup>
             <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"/>
