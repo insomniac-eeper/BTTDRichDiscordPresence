@@ -21,9 +21,9 @@ internal static class Constants
     internal static int MaxRetries { get; } = 5;
 
     /// <summary>
-    /// Delay between retries in milliseconds.
+    /// Delay between retries in seconds.
     /// </summary>
-    internal static int RetryDelay { get; } = 5000;
+    internal static int RetryDelay { get; } = 5;
 
     /// <summary>
     /// Mapping of map ids to map names.

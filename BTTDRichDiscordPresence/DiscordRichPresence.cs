@@ -61,7 +61,16 @@ public class DiscordRichPresence
             },
         };
 
-        activityManager.UpdateActivity(presence, resultCallback);
+        activityManager.UpdateActivity(presence, result =>
+        {
+            if (result == Result.NotRunning)
+            {
+                this.client?.Dispose();
+                this.client = null;
+                this.retries = 0;
+            }
+            resultCallback?.Invoke(result);
+        });
     }
 
     /// <summary>
