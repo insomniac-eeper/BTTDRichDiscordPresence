@@ -6,7 +6,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <!-- PROGRA~1 is the short path for Program Files -->
         <!-- PROGRA~2 is the short path for Program Files (x86) -->
-		<GameDir>D:\SteamLibrary\steamapps\common\MetalHeadGames\</GameDir>		
+        <GameDir>D:\SteamLibrary\steamapps\common\MetalHeadGames\</GameDir>
         <!-- Path of the game's plugin directory where the built plugin will be copied to -->
         <PluginGameDir>$(GameDir)BepInEx\plugins\</PluginGameDir>
         <!-- Path of the game's managed directory where the game's dlls are located -->
