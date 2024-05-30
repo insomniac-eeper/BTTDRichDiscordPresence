@@ -2,6 +2,7 @@
 namespace BTTDRichDiscordPresence;
 
 using Discord;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -19,6 +20,8 @@ public class BTTDRichPresence : MonoBehaviour
     private int currentMapId = -1;
     private int reportedMapId = -999;
 
+    private long lastActivityUpdateTimestamp;
+
     /// <summary>
     /// Runs once script is initialized regardless of enabled state.
     /// </summary>
@@ -30,6 +33,7 @@ public class BTTDRichPresence : MonoBehaviour
         this.DefineHooks();
         this.discordRichPresence ??= new DiscordRichPresence();
         this.discordRichPresence.Start();
+        lastActivityUpdateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
     }
 
     /// <summary>
@@ -56,6 +60,13 @@ public class BTTDRichPresence : MonoBehaviour
     /// </remarks>
     private bool ShouldUpdateActivity()
     {
+        var now = DateTimeOffset.Now.ToUnixTimeSeconds();
+        if (now - this.lastActivityUpdateTimestamp < 5)
+        {
+            return false;
+        }
+
+        lastActivityUpdateTimestamp = now;
         return this.currentMapId != this.reportedMapId;
     }
 

@@ -97,22 +97,25 @@ public class DiscordRichPresence
     {
         if (this.client == null)
         {
-            if (this.lastAttemptTimestamp + Constants.RetryDelay < DateTimeOffset.Now.ToUnixTimeSeconds())
+            var now = DateTimeOffset.Now.ToUnixTimeSeconds();
+            if (this.lastAttemptTimestamp + Constants.RetryDelay < now)
             {
-                if (this.retries < Constants.MaxRetries)
-                {
-                    this.retries++;
-                    _ = this.RegisterClient();
-                }
-                else
-                {
-                    Plugin.Log.LogWarning("Max retries for connecting to client reached.");
-                    return;
-                }
+                _ = this.RegisterClient();
+                this.lastAttemptTimestamp = now;
             }
         }
 
-        this.client?.RunCallbacks();
+        try
+        {
+            this.client?.RunCallbacks();
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning("Failed to run callbacks: " + ex.Message);
+            this.client?.Dispose();
+            this.client = null;
+        }
+
     }
 
     private bool RegisterClient()
@@ -120,7 +123,7 @@ public class DiscordRichPresence
         this.lastAttemptTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
         try
         {
-            this.client = new Discord(Constants.AppId, (ulong)CreateFlags.Default);
+            this.client = new Discord(Constants.AppId, (ulong)CreateFlags.NoRequireDiscord);
             Plugin.Log.LogInfo("Client created.");
         }
         catch (Exception ex)
