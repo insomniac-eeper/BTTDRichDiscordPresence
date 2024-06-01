@@ -110,5 +110,41 @@ public class GameStateEvaluator
                 Protagonist = Characters.Get(protagonist.attribute.id)
             };
         };
+
+        On.CharacterAnimationBasicConfig.IsShowLeiDeClub += (orig, character) =>
+        {
+            var ret = orig(character);
+
+            if (character.attribute.id != GameProcess.singleton.protagonistId)
+            {
+                return ret;
+            }
+
+            if (ret == false)
+            {
+                var gameProtagonistId = GameProcess.singleton.protagonistId;
+                if (this.GameState.Protagonist?.Id != gameProtagonistId)
+                {
+                    this.GameState = this.GameState with
+                    {
+                        Protagonist = Characters.Get(gameProtagonistId)
+                    };
+                    Plugin.Log.LogInfo($"Protagonist changed to {this.GameState.Protagonist?.Name}");
+                }
+            }
+            else
+            {
+                if (this.GameState.Protagonist?.Id != 11017)
+                {
+                    this.GameState = this.GameState with
+                    {
+                        Protagonist = Characters.Get(11017)
+                    };
+                    Plugin.Log.LogInfo($"Protagonist changed to {this.GameState.Protagonist?.Name}");
+                }
+            }
+
+            return ret;
+        };
     }
 }
