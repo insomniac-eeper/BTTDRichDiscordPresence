@@ -76,15 +76,11 @@ Your mileage may vary, it appears that the native Discord client works just fine
 |main_menu| MapAsset | ✔️ | !["Main Menu"](./image%20assets/Discord%20App%20Assets/main_menu.png) |
 |map_recreation_yard| MapAsset | ❌ | |
 |map_main_building| MapAsset | ❌ | |
-|map_main_building| MapAsset | ❌ | |
 |map_cell_block_a| MapAsset | ❌ | |
-|map_cell_block_a| MapAsset | ❌ | |
-|map_cell_block_b| MapAsset | ❌ | |
 |map_cell_block_b| MapAsset | ❌ | |
 |map_cell_a207| MapAsset | ❌ | |
 |map_cell_a103| MapAsset | ❌ | |
 |map_bathroom| MapAsset | ❌ | |
-|map_boxing_ring| MapAsset | ❌ | |
 |map_general_building| MapAsset | ❌ | |
 |map_barbershop| MapAsset | ❌ | |
 |map_chapel| MapAsset | ❌ | |
@@ -107,15 +103,12 @@ Your mileage may vary, it appears that the native Discord client works just fine
 |map_sewer| MapAsset | ❌ | |
 |map_mixing_room| MapAsset | ❌ | |
 |map_mailroom| MapAsset | ❌ | |
-|map_visit_room| MapAsset | ❌ | |
 |map_apartment_block| MapAsset | ❌ | |
 |map_college_dorm| MapAsset | ❌ | |
-|map_main_building| MapAsset | ❌ | |
 |map_inmate_property_storeroom| MapAsset | ❌ | |
 |map_back_room_club| MapAsset | ❌ | |
 |map_rooftop_tool_shed| MapAsset | ❌ | |
 |map_fallen_angels| MapAsset | ❌ | |
-|map_bathroom| MapAsset | ❌ | |
 |map_private_room| MapAsset | ❌ | |
 |map_backstage_corridor| MapAsset | ❌ | |
 |map_dressing_room| MapAsset | ❌ | |
@@ -134,7 +127,6 @@ Your mileage may vary, it appears that the native Discord client works just fine
 |map_tv_building| MapAsset | ❌ | |
 |map_hospital_ward| MapAsset | ❌ | |
 |map_city_cemetery| MapAsset | ❌ | |
-|map_apartment_block| MapAsset | ❌ | |
 |map_border_checkpoints| MapAsset | ❌ | |
 |map_fighters_room| MapAsset | ❌ | |
 |map_vip_box| MapAsset | ❌ | |
