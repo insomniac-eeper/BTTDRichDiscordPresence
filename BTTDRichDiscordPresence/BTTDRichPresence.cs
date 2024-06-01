@@ -1,8 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
-
-using BTTDRichDiscordPresence.Data;
-
 namespace BTTDRichDiscordPresence;
+
+using Data;
 
 using Discord;
 using System;

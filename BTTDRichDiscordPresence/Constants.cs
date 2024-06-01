@@ -1,7 +1,5 @@
 ﻿namespace BTTDRichDiscordPresence;
 
-using System.Collections.Generic;
-
 /// <summary>
 /// General constants for the plugin.
 /// </summary>

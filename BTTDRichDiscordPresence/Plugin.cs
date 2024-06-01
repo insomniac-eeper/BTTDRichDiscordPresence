@@ -1,6 +1,4 @@
-﻿using BTTDRichDiscordPresence.Data;
-
-namespace BTTDRichDiscordPresence;
+﻿namespace BTTDRichDiscordPresence;
 
 using BepInEx;
 using UnityEngine;

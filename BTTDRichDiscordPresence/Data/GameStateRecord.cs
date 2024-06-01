@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿namespace BTTDRichDiscordPresence.Data;
 
-namespace BTTDRichDiscordPresence.Data;
+using JetBrains.Annotations;
 
 /// <summary>
 /// Describes the current and relevant to rich presence state of the game.
