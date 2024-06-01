@@ -85,6 +85,12 @@ public class BTTDRichPresence : MonoBehaviour
             protagonistAssetTextDescription = $"Playing {protagonist.Name} the {protagonist.Animal}";
         }
 
+        var largeImageAssetString = string.Empty;
+        var largeImageAssetTextDescription = string.Empty;
+
+        largeImageAssetString = Assets.GetMapAssetString(gameState.Map);
+        largeImageAssetTextDescription = gameState.Map.Name;
+
         var state = string.Empty;
         if (gameState.Battle is not null)
         {
@@ -106,7 +112,8 @@ public class BTTDRichPresence : MonoBehaviour
         this.discordRichPresence.SetPresence(
             details: detailString,
             state: state,
-            largeImage: "main_menu",
+            largeImage: largeImageAssetString,
+            largeText: largeImageAssetTextDescription,
             smallImage: protagonistAssetString,
             smallText: protagonistAssetTextDescription,
             resultCallback: result =>
