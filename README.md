@@ -76,17 +76,17 @@ This needs to be done manually until an extra build task is added.
 | Identifier | Type | Status | Image |
 |------------|------|--------|-------|
 |main_menu| MapAsset | ✔️ | !["Main Menu"](./image%20assets/Discord%20App%20Assets/main_menu.png) |
-|map_recreation_yard| MapAsset | ❌ | |
+|map_recreation_yard| MapAsset | ✔️ | !["Recreation Yard"](./image%20assets/Discord%20App%20Assets/map_recreation_yard.png) |
 |map_main_building| MapAsset | ✔️ | !["Main Building"](./image%20assets/Discord%20App%20Assets/map_main_building.png) |
 |map_cell_block_a| MapAsset | ✔️ | !["Cell Block A"](./image%20assets/Discord%20App%20Assets/map_cell_block_a.png) |
 |map_cell_block_b| MapAsset | ✔️ | !["Cell Block B"](./image%20assets/Discord%20App%20Assets/map_cell_block_b.png) |
 |map_cell_a207| MapAsset | ✔️ | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png) |
 |map_cell_a103| MapAsset | ✔️ | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png) |
 |map_bathroom| MapAsset | ❌ | |
-|map_general_building| MapAsset | ❌ | |
+|map_general_building| MapAsset | ✔️ | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png) ||
 |map_barbershop| MapAsset | ❌ | |
-|map_chapel| MapAsset | ❌ | |
-|map_cafeteria| MapAsset | ❌ | |
+|map_chapel| MapAsset | ✔️ | !["Chapel"](./image%20assets/Discord%20App%20Assets/map_chapel.png) |
+|map_cafeteria| MapAsset | ✔️ | !["Cafeteria"](./image%20assets/Discord%20App%20Assets/map_cafeteria.png) |
 |map_hiding_place| MapAsset | ❌ | |
 |map_infirmary| MapAsset | ❌ | |
 |map_segregation| MapAsset | ❌ | |
