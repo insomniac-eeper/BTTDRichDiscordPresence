@@ -62,7 +62,10 @@ Your mileage may vary, it appears that the native Discord client works just fine
   - Place the csharp library files into external/discordsdk/csharp
   - Place the contents of lib/x86_64 into external/discordsdk/native
 
-- Note that project build will try to copy plugin DLL to the BepInEx plugin directory **but will not copy discord sdk native dll**. This needs to be done manually until an extra build task is added.
+- Note that project build will try to copy plugin DLL to the BepInEx plugin directory **but will not copy discord sdk native dll**.
+This needs to be done manually until an extra build task is added.
+
+- This mod relies on generated runtime detour hooks which can be automatically generated with [Bepinex.Monomod.HookGenPatcher](https://github.com/harbingerofme/Bepinex.Monomod.HookGenPatcher). You may also further reduce the size of the generated file with the use of [LigherPatcher](https://github.com/harbingerofme/LighterPatcher).
 
 ## Planned Features
 - [ ] Minigame detection
