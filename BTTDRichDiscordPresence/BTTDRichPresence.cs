@@ -100,11 +100,13 @@ public class BTTDRichPresence : MonoBehaviour
             state = gameState.Map.Name;
         }
 
+        #if DEBUG
         Plugin.Log.LogWarning($"GameState: {gameState}");
+        #endif
 
         this.discordRichPresence.SetPresence(
             details: detailString,
-            state: gameState.Map.Name,
+            state: state,
             largeImage: "main_menu",
             smallImage: protagonistAssetString,
             smallText: protagonistAssetTextDescription,
