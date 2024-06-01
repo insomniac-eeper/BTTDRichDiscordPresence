@@ -82,7 +82,7 @@ This needs to be done manually until an extra build task is added.
 |map_cell_block_b| MapAsset | ✔️ | !["Cell Block B"](./image%20assets/Discord%20App%20Assets/map_cell_block_b.png) |
 |map_cell_a207| MapAsset | ✔️ | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png) |
 |map_cell_a103| MapAsset | ✔️ | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png) |
-|map_bathroom| MapAsset | ❌ | |
+|map_bathroom| MapAsset | ✔️ | !["Bathroom"](./image%20assets/Discord%20App%20Assets/map_bathroom.png) |
 |map_general_building| MapAsset | ✔️ | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png) ||
 |map_barbershop| MapAsset | ❌ | |
 |map_chapel| MapAsset | ✔️ | !["Chapel"](./image%20assets/Discord%20App%20Assets/map_chapel.png) |
@@ -132,7 +132,7 @@ This needs to be done manually until an extra build task is added.
 |map_border_checkpoints| MapAsset | ❌ | |
 |map_fighters_room| MapAsset | ❌ | |
 |map_vip_box| MapAsset | ❌ | |
-|map_boxing_ring| MapAsset | ❌ | |
+|map_boxing_ring| MapAsset | ✔️ | !["Boxing Ring"](./image%20assets/Discord%20App%20Assets/map_boxing_ring.png) |
 |map_casino_alley| MapAsset | ❌ | |
 |character_thomas| CharacterAsset | ✔️ | !["Thomas"](./image%20assets/Discord%20App%20Assets/character_thomas.png) |
 |character_reed| CharacterAsset | ✔️ | !["Reed"](./image%20assets/Discord%20App%20Assets/character_reed.png) |
