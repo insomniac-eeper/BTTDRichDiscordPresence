@@ -105,6 +105,7 @@ public class GameStateEvaluator
         On.CharacterManage.SetProtagonist += (orig, protagonist) =>
         {
             orig(protagonist);
+            GameProcess.singleton.protagonistId = protagonist.attribute.id;
             this.GameState = GameState with
             {
                 Protagonist = Characters.Get(protagonist.attribute.id)
