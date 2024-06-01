@@ -1,4 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
+
+using BTTDRichDiscordPresence.Data;
+
 namespace BTTDRichDiscordPresence;
 
 using Discord;
@@ -10,15 +13,11 @@ using UnityEngine;
 /// </summary>
 public class BTTDRichPresence : MonoBehaviour
 {
-    // TODO: Use following property for certain state checks.
-#pragma warning disable CS0414 // Field is assigned but its value is never used
-    private bool inGame;
-#pragma warning restore CS0414 // Field is assigned but its value is never used
 
     private DiscordRichPresence discordRichPresence;
+    private GameStateEvaluator gameStateEvaluator;
 
-    private int currentMapId = -1;
-    private int reportedMapId = -999;
+    private GameStateRecord lastReportedGameState;
 
     private long lastActivityUpdateTimestamp;
 
@@ -30,7 +29,8 @@ public class BTTDRichPresence : MonoBehaviour
     /// </remarks>
     public void Awake()
     {
-        this.DefineHooks();
+        this.gameStateEvaluator ??= new GameStateEvaluator();
+        this.gameStateEvaluator.DefineHooks();
         this.discordRichPresence ??= new DiscordRichPresence();
         this.discordRichPresence.Start();
         lastActivityUpdateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
@@ -67,50 +67,33 @@ public class BTTDRichPresence : MonoBehaviour
         }
 
         lastActivityUpdateTimestamp = now;
-        return this.currentMapId != this.reportedMapId;
-    }
-
-    /// <summary>
-    /// Gets slug for currently playing character corresponding to uploaded discord app assets and adds flavor text.
-    /// </summary>
-    /// <returns>
-    /// A tuple containing two strings:
-    /// - The first string is the slug for the protagonist character. This is a unique identifier for the character.
-    /// - The second string is a descriptive string for the protagonist character, possibly used for display or logging purposes.
-    /// </returns>
-    private (string, string) GetProtagonistCharacterSlugs()
-    {
-        if (this.currentMapId == -1)
-        {
-            return (string.Empty, string.Empty);
-        }
-
-        // TODO: Check protagonist character
-        // TODO: Determine how to detect when playing as Reed
-        return ("thomas", "Playing Thomas");
+        return gameStateEvaluator.GameState != lastReportedGameState;
     }
 
     private void UpdateRichPresence()
     {
-        var gameDay = GameProcess.singleton?.allDay + 1;
-        var detailString = gameDay == null ? string.Empty : $"Day {gameDay}";
-        var (protagonistCharacterSlug, protagonistString) = this.GetProtagonistCharacterSlugs();
+        var gameState = gameStateEvaluator.GameState;
+        var detailString = gameState.IsInMainMenu ?
+            string.Empty :
+            $"Day {gameState.DateTime.Day} {nameof(gameState.DateTime.Daytime)}";
 
-        Plugin.Log.LogInfo($"Setting presence for map {this.currentMapId}, {protagonistCharacterSlug}, {protagonistString}");
+        var protagonist = gameState.Protagonist;
+        var protagonistAssetString = Assets.GetCharacterAssetString(protagonist);
+        var protagonistAssetTextDescription = $"Playing {protagonist.Name} the {protagonist.Animal}";
 
-        var mapIdToSetOnSuccess = this.currentMapId;
+        Plugin.Log.LogInfo($"Setting presence for map {gameState.Map.Name}, {protagonistAssetTextDescription}");
 
         this.discordRichPresence.SetPresence(
             details: detailString,
-            state: Constants.MapNames[this.currentMapId],
+            state: gameState.Map.Name,
             largeImage: "main_menu",
-            smallImage: protagonistCharacterSlug,
-            smallText: protagonistString,
+            smallImage: protagonistAssetString,
+            smallText: protagonistAssetTextDescription,
             resultCallback: result =>
             {
                 if (result == Result.Ok)
                 {
-                    this.reportedMapId = mapIdToSetOnSuccess;
+                    this.lastReportedGameState = gameState;
                     Plugin.Log.LogInfo($"Update Activity {result}");
                 }
                 else
@@ -118,34 +101,5 @@ public class BTTDRichPresence : MonoBehaviour
                     Plugin.Log.LogWarning($"Failed to update activity: {result}");
                 }
             });
-    }
-
-    private void DefineHooks()
-    {
-        On.GameManage.ReadArchiveDataAndStartGame += (orig, gameManager, archiveId) =>
-        {
-            orig(gameManager, archiveId);
-            this.currentMapId = MapManage.currentMap.id;
-            this.inGame = true;
-        };
-
-        On.MapManage.SetCurrentMapAndShow += (orig, map) =>
-        {
-            orig(map);
-            this.currentMapId = map.id;
-        };
-
-        On.Map.SetFocus += (orig, map, isFocus) =>
-        {
-            orig(map, isFocus);
-            this.currentMapId = map.id;
-        };
-
-        On.GameManage.EndGameToReStart += (orig, gameManage, immediateStartId) =>
-        {
-            orig(gameManage, immediateStartId);
-            this.inGame = false;
-            this.currentMapId = -1;
-        };
     }
 }
