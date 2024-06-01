@@ -5,6 +5,8 @@ using System;
 using Discord;
 using JetBrains.Annotations;
 
+using Data;
+
 /// <summary>
 /// Simplified wrapper for Discord Game SDK to manage rich presence.
 /// </summary>
@@ -23,20 +25,10 @@ public class DiscordRichPresence
     /// <summary>
     /// Sets the presence for the discord client.
     /// </summary>
-    /// <param name="details">First line in status.</param>
-    /// <param name="state">Second line in status.</param>
-    /// <param name="largeImage">Key to asset shown as a large image.</param>
-    /// <param name="largeText">Text to show when hovering over large image.</param>
-    /// <param name="smallImage">Key to asset shown as a small image on bottom right corner of large image.</param>
-    /// <param name="smallText">Text to show when hovering over small image.</param>
+
     /// <param name="resultCallback">Callback to execute upon getting result of update.</param>
     public void SetPresence(
-        string details = default,
-        string state = default,
-        string largeImage = default,
-        string largeText = default,
-        string smallImage = default,
-        string smallText = default,
+        DiscordRichPresenceRecord presenceRecord,
         ActivityManager.UpdateActivityHandler resultCallback = default)
     {
         var activityManager = this.client?.GetActivityManager();
@@ -48,15 +40,15 @@ public class DiscordRichPresence
 
         var presence = new Activity()
         {
-            Details = details,
-            State = state,
+            Details = presenceRecord.Details,
+            State = presenceRecord.State,
             Timestamps = this.timestamps,
             Assets = new ()
             {
-                LargeImage = largeImage,
-                LargeText = largeText,
-                SmallImage = smallImage,
-                SmallText = smallText,
+                LargeImage = presenceRecord.LargeImageKey,
+                LargeText = presenceRecord.LargeImageText,
+                SmallImage = presenceRecord.SmallImageKey,
+                SmallText = presenceRecord.SmallImageText,
             },
         };
 

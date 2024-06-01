@@ -72,50 +72,14 @@ public class BTTDRichPresence : MonoBehaviour
     private void UpdateRichPresence()
     {
         var gameState = gameStateEvaluator.GameState;
-        var detailString = gameState.IsInMainMenu ?
-            string.Empty :
-            $"Day {gameState.DateTime?.Day} | {gameState.DateTime?.Hours}:{gameState.DateTime?.Minutes:D2}";
-
-        var protagonist = gameState.Protagonist;
-        var protagonistAssetString = string.Empty;
-        var protagonistAssetTextDescription = string.Empty;
-        if (protagonist is not null)
-        {
-            protagonistAssetString = Assets.GetCharacterAssetString(protagonist);
-            protagonistAssetTextDescription = $"Playing {protagonist.Name} the {protagonist.Animal}";
-        }
-
-        var largeImageAssetString = string.Empty;
-        var largeImageAssetTextDescription = string.Empty;
-
-        largeImageAssetString = Assets.GetMapAssetString(gameState.Map);
-        largeImageAssetTextDescription = gameState.Map.Name;
-
-        var state = string.Empty;
-        if (gameState.Battle is not null)
-        {
-            state = $"Battling {gameState.Battle?.Opponent.Name}";
-            if (!string.IsNullOrEmpty(gameState.Battle?.Opponent.Animal))
-            {
-                state += $" the {gameState.Battle?.Opponent.Animal}";
-            }
-        }
-        else
-        {
-            state = gameState.Map.Name;
-        }
+        var discordPresence = PresenceBuilder.BuildPresence(gameState);
 
         #if DEBUG
         Plugin.Log.LogWarning($"GameState: {gameState}");
         #endif
 
         this.discordRichPresence.SetPresence(
-            details: detailString,
-            state: state,
-            largeImage: largeImageAssetString,
-            largeText: largeImageAssetTextDescription,
-            smallImage: protagonistAssetString,
-            smallText: protagonistAssetTextDescription,
+            discordPresence,
             resultCallback: result =>
             {
                 if (result == Result.Ok)
