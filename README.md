@@ -78,9 +78,9 @@ This needs to be done manually until an extra build task is added.
 |main_menu| MapAsset | ✔️ | !["Main Menu"](./image%20assets/Discord%20App%20Assets/main_menu.png) |
 |map_recreation_yard| MapAsset | ❌ | |
 |map_main_building| MapAsset | ✔️ | !["Main Building"](./image%20assets/Discord%20App%20Assets/map_main_building.png) |
-|map_cell_block_a| MapAsset | ❌ | |
+|map_cell_block_a| MapAsset | ✔️ | !["Cell Block A"](./image%20assets/Discord%20App%20Assets/map_cell_block_a.png) |
 |map_cell_block_b| MapAsset | ✔️ | !["Cell Block B"](./image%20assets/Discord%20App%20Assets/map_cell_block_b.png) |
-|map_cell_a207| MapAsset | ❌ | |
+|map_cell_a207| MapAsset | ✔️ | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png) |
 |map_cell_a103| MapAsset | ✔️ | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png) |
 |map_bathroom| MapAsset | ❌ | |
 |map_general_building| MapAsset | ❌ | |
@@ -94,7 +94,7 @@ This needs to be done manually until an extra build task is added.
 |map_sewage_treatment_room| MapAsset | ❌ | |
 |map_kitchen| MapAsset | ❌ | |
 |map_guards_room| MapAsset | ❌ | |
-|map_roof_site| MapAsset | ❌ | |
+|map_roof_site| MapAsset | ✔️ | !["Roof Site"](./image%20assets/Discord%20App%20Assets/map_roof_site.png) |
 |map_wardens_office| MapAsset | ❌ | |
 |map_visit_room| MapAsset | ❌ | |
 |map_conjugal_visit_room| MapAsset | ❌ | |
@@ -109,7 +109,7 @@ This needs to be done manually until an extra build task is added.
 |map_college_dorm| MapAsset | ❌ | |
 |map_inmate_property_storeroom| MapAsset | ❌ | |
 |map_back_room_club| MapAsset | ❌ | |
-|map_rooftop_tool_shed| MapAsset | ❌ | |
+|map_rooftop_tool_shed| MapAsset | ✔️ | !["Rooftop Tool Shed"](./image%20assets/Discord%20App%20Assets/map_rooftop_tool_shed.png) |
 |map_fallen_angels| MapAsset | ❌ | |
 |map_private_room| MapAsset | ❌ | |
 |map_backstage_corridor| MapAsset | ❌ | |
