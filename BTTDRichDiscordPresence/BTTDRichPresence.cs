@@ -75,13 +75,32 @@ public class BTTDRichPresence : MonoBehaviour
         var gameState = gameStateEvaluator.GameState;
         var detailString = gameState.IsInMainMenu ?
             string.Empty :
-            $"Day {gameState.DateTime.Day} {nameof(gameState.DateTime.Daytime)}";
+            $"Day {gameState.DateTime?.Day} | {gameState.DateTime?.Hours}:{gameState.DateTime?.Minutes:D2}";
 
         var protagonist = gameState.Protagonist;
-        var protagonistAssetString = Assets.GetCharacterAssetString(protagonist);
-        var protagonistAssetTextDescription = $"Playing {protagonist.Name} the {protagonist.Animal}";
+        var protagonistAssetString = string.Empty;
+        var protagonistAssetTextDescription = string.Empty;
+        if (protagonist is not null)
+        {
+            protagonistAssetString = Assets.GetCharacterAssetString(protagonist);
+            protagonistAssetTextDescription = $"Playing {protagonist.Name} the {protagonist.Animal}";
+        }
 
-        Plugin.Log.LogInfo($"Setting presence for map {gameState.Map.Name}, {protagonistAssetTextDescription}");
+        var state = string.Empty;
+        if (gameState.Battle is not null)
+        {
+            state = $"Battling {gameState.Battle?.Opponent.Name}";
+            if (!string.IsNullOrEmpty(gameState.Battle?.Opponent.Animal))
+            {
+                state += $" the {gameState.Battle?.Opponent.Animal}";
+            }
+        }
+        else
+        {
+            state = gameState.Map.Name;
+        }
+
+        Plugin.Log.LogWarning($"GameState: {gameState}");
 
         this.discordRichPresence.SetPresence(
             details: detailString,

@@ -1,4 +1,6 @@
-﻿namespace BTTDRichDiscordPresence.Data;
+﻿using JetBrains.Annotations;
+
+namespace BTTDRichDiscordPresence.Data;
 
 /// <summary>
 /// Describes the current and relevant to rich presence state of the game.
@@ -10,10 +12,10 @@
 /// <param name="Battle">Battle information if character is in battle.</param>
 /// <param name="Minigame">Minigame information if the character is currently playing.</param>
 public record struct GameStateRecord(
-    CharacterRecord Protagonist,
-    MapRecord Map,
-    GameTime DateTime,
     bool IsInMainMenu,
-    BattleRecord? Battle,
-    MinigameRecord Minigame
+    MapRecord Map,
+    [CanBeNull] CharacterRecord Protagonist = null,
+    GameTime? DateTime = null,
+    BattleRecord? Battle = null,
+    MinigameRecord? Minigame = null
     );
