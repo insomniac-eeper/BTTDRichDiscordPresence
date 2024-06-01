@@ -18,7 +18,6 @@ public class DiscordRichPresence
     private long startTimestamp;
     private ActivityTimestamps timestamps;
 
-    private int retries;
     private long lastAttemptTimestamp;
 
     /// <summary>
@@ -67,7 +66,6 @@ public class DiscordRichPresence
             {
                 this.client?.Dispose();
                 this.client = null;
-                this.retries = 0;
             }
             resultCallback?.Invoke(result);
         });
