@@ -49,6 +49,7 @@ If you notice that your presence is changed to playing Back to the Dawn but no o
 In order to solve this, disable detection of the Back to the Dawn game with a verified mark under Discord User Settings -> Activity Settings -> Registered Games.
 
 ![Discord settings disable BTTD detection](./image%20assets/Readme/Disable%20BTTD%20Steam%20Detection.png)
+
 *Ensure the eye icon which is for detection is red or disabled*
 
 ### Windows
