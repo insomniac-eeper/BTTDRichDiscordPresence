@@ -9,12 +9,18 @@ using Data;
 /// Currently interprets each field of <see cref="GameStateRecord"/> separetely and does not consider situations where
 /// they may affect each other. This may be a future improvement.
 /// </remarks>
-public static class PresenceBuilder
+public static class DiscordPresenceFromGamestateBuilder
 {
     private record struct DiscordImageDefinition(string Key, string Description);
 
     public static DiscordRichPresenceRecord BuildPresence(GameStateRecord gameState)
     {
+        // if map ID is Cell A103 when single cell is unlocked we are actually in A207
+        if (gameState.Map.Id == 9 && CharacterManage.protagonistAttribute.IsSingleCell())
+        {
+            gameState = gameState with { Map = Maps.Get(8) }; // ID 8 is A207
+        }
+
         var details = BuildDetailString(gameState);
 
         var smallImageDefinition = BuildSmallImageDefinition(gameState);

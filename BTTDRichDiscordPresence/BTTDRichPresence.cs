@@ -72,7 +72,7 @@ public class BTTDRichPresence : MonoBehaviour
     private void UpdateRichPresence()
     {
         var gameState = gameStateEvaluator.GameState;
-        var discordPresence = PresenceBuilder.BuildPresence(gameState);
+        var discordPresence = DiscordPresenceFromGamestateBuilder.BuildPresence(gameState);
 
         #if DEBUG
         Plugin.Log.LogWarning($"GameState: {gameState}");
