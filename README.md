@@ -45,7 +45,9 @@ Please refer to [Installing BepInEx](https://docs.bepinex.dev/articles/user_guid
 
 ## Usage
 
-Make sure that Discord is running as well. The connect/reconnect resiliency and logic isn't phenomenal so it helps to have Discord running for the entirety of this.
+Simply have Discord open while running the game.
+If you notice that your presence is changed to playing Back to the Dawn but no other information is visible it may be that Discord has auto-detected Back to the Dawn and is showing that instead of the rich presence.
+In order to solve this, disable detection of the Back to the Dawn game with a verified mark under Discord User Settings -> Activity Settings -> Registered Games.
 
 ### Windows
 Things should work out of the box.
@@ -64,7 +66,7 @@ Your mileage may vary, it appears that the native Discord client works just fine
 - Note that project build will try to copy plugin DLL to the BepInEx plugin directory **but will not copy discord sdk native dll**.
 This needs to be done manually until an extra build task is added.
 
-- This mod relies on generated runtime detour hooks which can be automatically generated with [Bepinex.Monomod.HookGenPatcher](https://github.com/harbingerofme/Bepinex.Monomod.HookGenPatcher). You may also further reduce the size of the generated file with the use of [LigherPatcher](https://github.com/harbingerofme/LighterPatcher).
+- This mod relies on generated runtime detour hooks which can be automatically generated with [Bepinex.Monomod.HookGenPatcher](https://github.com/harbingerofme/Bepinex.Monomod.HookGenPatcher). You may also further reduce the size of the generated file with the use of [LighterPatcher](https://github.com/harbingerofme/LighterPatcher).
 
 ## Planned Features
 - [ ] Minigame detection
