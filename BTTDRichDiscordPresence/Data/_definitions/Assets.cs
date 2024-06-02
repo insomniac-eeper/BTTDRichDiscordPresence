@@ -2,10 +2,13 @@
 
 using System.Collections.Generic;
 
+/// <summary>
+/// Defines the asset strings used by the discord app for maps and characters.
+/// </summary>
 public static class Assets
 {
 
-    private static Dictionary<int, string> _mapAssetIdentifiers { get; } = new()
+    private static Dictionary<int, string> InternalAssets { get; } = new()
     {
         { -1, "main_menu" },
         { 1, "map_recreation_yard" },
@@ -76,7 +79,7 @@ public static class Assets
         { 82, "map_casino_alley" },
     };
 
-    private static Dictionary<int, string> _characterAssetIdentifiers { get; } = new()
+    private static Dictionary<int, string> CharacterAssetIdentifiers { get; } = new()
     {
         // Characters
         { 1, "character_thomas" },
@@ -85,14 +88,24 @@ public static class Assets
         { 25, "character_bob" },
     };
 
+    /// <summary>
+    /// Gets corresponding asset string for the character record.
+    /// </summary>
+    /// <param name="characterRecord">Playable character.</param>
+    /// <returns><see cref="string"/> referring to Discord App asset for <see cref="CharacterRecord"/>.</returns>
     public static string GetCharacterAssetString(CharacterRecord characterRecord)
     {
         if (characterRecord is null) return string.Empty;
-        return _characterAssetIdentifiers[characterRecord.Id];
+        return CharacterAssetIdentifiers[characterRecord.Id];
     }
 
+    /// <summary>
+    /// Gets corresponding asset string for the map record.
+    /// </summary>
+    /// <param name="mapRecord">Reachable Map.</param>
+    /// <returns><see cref="string"/> referring to Discord App asset for <see cref="MapRecord"/>.</returns>
     public static string GetMapAssetString(MapRecord mapRecord)
     {
-        return _mapAssetIdentifiers[mapRecord.Id];
+        return InternalAssets[mapRecord.Id];
     }
 }

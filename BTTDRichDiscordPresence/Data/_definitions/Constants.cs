@@ -11,15 +11,15 @@ internal static class Constants
     /// <summary>
     /// Discord Application ID with name and assets;
     /// </summary>
-    internal static long AppId { get; } = 1245657071815364680;
-
-    /// <summary>
-    /// Maximum number of retries when failing to connect.
-    /// </summary>
-    internal static int MaxRetries { get; } = 5;
+    internal const long AppId = 1245657071815364680;
 
     /// <summary>
     /// Delay between retries in seconds.
     /// </summary>
-    internal static int RetryDelay { get; } = 5;
+    internal const int RetryDelay = 5;
+
+    /// <summary>
+    /// Delay between updates in seconds.
+    /// </summary>
+    internal const int UpdateActivityDelay = 5;
 }

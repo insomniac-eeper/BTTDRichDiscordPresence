@@ -13,6 +13,11 @@ public static class DiscordPresenceFromGamestateBuilder
 {
     private record struct DiscordImageDefinition(string Key, string Description);
 
+    /// <summary>
+    /// Defines a <see cref="DiscordRichPresenceRecord"/> based on the given <see cref="GameStateRecord"/>.
+    /// </summary>
+    /// <param name="gameState">The current game state to evaluate.</param>
+    /// <returns>Correspondingly generated <see cref="DiscordRichPresenceRecord"/>.</returns>
     public static DiscordRichPresenceRecord BuildPresence(GameStateRecord gameState)
     {
         // if map ID is Cell A103 when single cell is unlocked we are actually in A207

@@ -2,9 +2,12 @@
 
 using System.Collections.Generic;
 
+/// <summary>
+/// Defines the available maps in the game.
+/// </summary>
 public static class Maps
 {
-    private static Dictionary<int, MapRecord> _maps { get; } = new()
+    private static Dictionary<int, MapRecord> InternalMaps { get; } = new()
     {
         { -1, new(-1, "Main Menu") },
         { 1,  new(1,  "Recreation Yard") },
@@ -75,10 +78,20 @@ public static class Maps
         { 82, new(82, "Casino Alley") },
     };
 
+    /// <summary>
+    /// Attempts to get a map by its ID.
+    /// </summary>
+    /// <param name="id">Map identifier.</param>
+    /// <returns><see cref="MapRecord"/> if id is found, <c>null</c> otherwise.</returns>
     public static MapRecord? TryGet(int id)
     {
-        return _maps.TryGetValue(id, out var map) ? map : null;
+        return InternalMaps.TryGetValue(id, out var map) ? map : null;
     }
 
-    public static MapRecord Get(int id) => _maps[id];
+    /// <summary>
+    /// Gets a <see cref="MapRecord"/> by its ID.
+    /// </summary>
+    /// <param name="id">Map identifier.</param>
+    /// <returns><see cref="MapRecord"/> corresponding to the <paramref name="id"/> provided.</returns>
+    public static MapRecord Get(int id) => InternalMaps[id];
 }

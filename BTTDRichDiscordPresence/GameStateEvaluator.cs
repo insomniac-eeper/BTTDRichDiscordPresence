@@ -100,11 +100,14 @@ public class GameStateEvaluator
             };
         };
 
-        // UI_Battle is used for spectating battles where the player is not involved.
+        // UI_Battle (as opposed to UI_Battle2) is used for spectating battles where the player is not involved.
 
         On.CharacterManage.SetProtagonist += (orig, protagonist) =>
         {
             orig(protagonist);
+            // Usually this protagonistId is set first via <see cref="InitManage"/> and then this function is called.
+            // However since I am using this function to test and change characters I also need to set this here since
+            // several checks rely on GameProcess.singleton.protagonistId.
             GameProcess.singleton.protagonistId = protagonist.attribute.id;
             this.GameState = GameState with
             {
@@ -112,36 +115,42 @@ public class GameStateEvaluator
             };
         };
 
+        // When playing as Reed the protagonist doesn't change, rather the sprite and animation
+        // of the protagonist do. Rather than expressing this nuance I chose to simply set the
+        // gamestate with Reed as the protagonist and switch back when appropriate.
         On.CharacterAnimationBasicConfig.IsShowLeiDeClub += (orig, character) =>
         {
             var ret = orig(character);
 
+            //  This function is applied to all characters and run often so an early return is necessary.
             if (character.attribute.id != GameProcess.singleton.protagonistId)
             {
                 return ret;
             }
 
+            // If we no longer are playing as Reed we need to switch back to the original protagonist.
             if (ret == false)
             {
                 var gameProtagonistId = GameProcess.singleton.protagonistId;
+                // Since this function is run in perpetuity we may have already switched back to the original
+                // protagonist, so we need to check if that is the case before creating another game state.
                 if (this.GameState.Protagonist?.Id != gameProtagonistId)
                 {
                     this.GameState = this.GameState with
                     {
                         Protagonist = Characters.Get(gameProtagonistId)
                     };
-                    Plugin.Log.LogInfo($"Protagonist changed to {this.GameState.Protagonist?.Name}");
                 }
             }
-            else
+            else // We are playing as Reed
             {
-                if (this.GameState.Protagonist?.Id != 11017)
+                // If we have not yet changed the game state protagonist to Reed we need to so.
+                if (this.GameState.Protagonist?.Id != 11017) // Reed's ID
                 {
                     this.GameState = this.GameState with
                     {
                         Protagonist = Characters.Get(11017)
                     };
-                    Plugin.Log.LogInfo($"Protagonist changed to {this.GameState.Protagonist?.Name}");
                 }
             }
 

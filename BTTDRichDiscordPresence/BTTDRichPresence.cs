@@ -49,18 +49,16 @@ public class BTTDRichPresence : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines if the current state differs from the last reported state.
+    /// Determines whether activity should be updated based on previous state and last update time.
     /// </summary>
     /// <returns>
-    /// <c>true</c> if current state differs from last report, otherwise <c>false</c>.
+    /// <c>true</c> if current state differs from last report and enough time has past from previous update,
+    /// otherwise <c>false</c>.
     /// </returns>
-    /// <remarks>
-    /// Currently we only check map id. In the future we will want to have additional state checks.
-    /// </remarks>
     private bool ShouldUpdateActivity()
     {
         var now = DateTimeOffset.Now.ToUnixTimeSeconds();
-        if (now - this.lastActivityUpdateTimestamp < 5)
+        if (now - this.lastActivityUpdateTimestamp < Constants.UpdateActivityDelay)
         {
             return false;
         }

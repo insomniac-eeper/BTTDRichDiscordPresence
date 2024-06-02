@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using NpcRecord = CharacterRecord.NpcRecord;
 using PrisonerRecord = CharacterRecord.PrisonerRecord;
 
+/// <summary>
+/// Defines the characters in the game.
+/// </summary>
 public static class Characters
 {
-    private static Dictionary<int, CharacterRecord> _characters { get; } = new()
+    private static Dictionary<int, CharacterRecord> InternalCharacters { get; } = new()
     {
         // NPCs
         { 11017, new NpcRecord(11017, "Reed", "Red Panda", "Lawyer", "Law firm") },
@@ -130,8 +133,14 @@ public static class Characters
         { 50, new PrisonerRecord(50, "Rex", "Dinosaur") },
     };
 
+    /// <summary>
+    /// Gets a <see cref="CharacterRecord"/> by its ID.
+    /// </summary>
+    /// <param name="id">Character identifier.</param>
+    /// <returns><see cref="CharacterRecord"/> corresponding to the <paramref name="id"/> provided.</returns>
+
     public static CharacterRecord Get(int id)
     {
-        return _characters[id];
+        return InternalCharacters[id];
     }
 }

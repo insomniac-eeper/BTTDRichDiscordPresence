@@ -7,10 +7,10 @@ using JetBrains.Annotations;
 /// </summary>
 /// <param name="Protagonist">Character the player is controlling.</param>
 /// <param name="Map">Current location of the player.</param>
-/// <param name="DateTime">Day and time infor for current save.</param>
+/// <param name="DateTime">Day and time for for current save.</param>
 /// <param name="IsInMainMenu">Whether the player is in the main menu.</param>
-/// <param name="Battle">Battle information if character is in battle.</param>
-/// <param name="Minigame">Minigame information if the character is currently playing.</param>
+/// <param name="Battle">Battle information, if character is in battle.</param>
+/// <param name="Minigame">Minigame information, if the character is currently playing.</param>
 public record struct GameStateRecord(
     bool IsInMainMenu,
     MapRecord Map,

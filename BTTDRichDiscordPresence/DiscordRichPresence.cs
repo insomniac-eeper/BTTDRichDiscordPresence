@@ -25,7 +25,7 @@ public class DiscordRichPresence
     /// <summary>
     /// Sets the presence for the discord client.
     /// </summary>
-
+    /// <param name="presenceRecord">Simplified presence definition to be applied to rich presence.</param>
     /// <param name="resultCallback">Callback to execute upon getting result of update.</param>
     public void SetPresence(
         DiscordRichPresenceRecord presenceRecord,

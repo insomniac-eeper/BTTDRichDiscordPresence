@@ -1,5 +1,8 @@
 ﻿namespace BTTDRichDiscordPresence.Data;
 
+/// <summary>
+/// Defines the minigames available in the game.
+/// </summary>
 public enum MinigameEnum
 {
     BenchPress = 0,
