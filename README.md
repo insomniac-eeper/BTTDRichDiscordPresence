@@ -89,7 +89,7 @@ This needs to be done manually until an extra build task is added.
 |map_cafeteria| MapAsset | ✔️ | !["Cafeteria"](./image%20assets/Discord%20App%20Assets/map_cafeteria.png) |
 |map_hiding_place| MapAsset | ❌ | |
 |map_infirmary| MapAsset | ❌ | |
-|map_segregation| MapAsset | ❌ | |
+|map_segregation| MapAsset | ✔️ | !["Segregation"](./image%20assets/Discord%20App%20Assets/map_segregation.png) |
 |map_laundry_room| MapAsset | ❌ | |
 |map_sewage_treatment_room| MapAsset | ❌ | |
 |map_kitchen| MapAsset | ❌ | |
