@@ -32,14 +32,14 @@ At the time of writing the images for locations are incomplete.
 
 ## Important Remarks
 
-The integration makes use of a Discord application in order to refer to assest (as opposed to using links).
+The integration makes use of a Discord application in order to refer to assets (as opposed to using links).
 This means that any asset must be uploaded to the appropriate Discord app and the associations references explicitly defined in the mod must be maintained.
 
 Refer to the [Asset Status](#asset-status) section to see the current state of images.
 
 ## Installation
 
-This is a Bepinex plugin which can be installed by being placed in the <BTTDGameDir>/BepInEx/plugins directory after running the game with BepInEx installed. 
+This is a BepInEx plugin which can be installed by being placed in the <BTTDGameDir>/BepInEx/plugins directory after running the game with BepInEx installed. 
 Please refer to [Installing BepInEx](https://docs.bepinex.dev/articles/user_guide/installation/index.html) for this.
 
 
@@ -57,7 +57,7 @@ Your mileage may vary, it appears that the native Discord client works just fine
 
 ## Getting things to build
 
-- Modify GameDir in Common.props to point to your game install location
+- Modify GameDir in Common.props to point to your game installation location
   - I should move this to csproj.user at some point...
 - Download [v2.5.6 of the discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started).
   - Place the csharp library files into external/discordsdk/csharp
@@ -71,71 +71,71 @@ This needs to be done manually until an extra build task is added.
 ## Planned Features
 - [ ] Minigame detection
 - [ ] More detailed battle information
-- [ ] Gang association informations
+- [ ] Gang association information
 
 ## Asset Status
 
-| Identifier | Type | Status | Image |
-|------------|------|--------|-------|
-|main_menu| MapAsset | ✔️ | !["Main Menu"](./image%20assets/Discord%20App%20Assets/main_menu.png) |
-|map_recreation_yard| MapAsset | ✔️ | !["Recreation Yard"](./image%20assets/Discord%20App%20Assets/map_recreation_yard.png) |
-|map_main_building| MapAsset | ✔️ | !["Main Building"](./image%20assets/Discord%20App%20Assets/map_main_building.png) |
-|map_cell_block_a| MapAsset | ✔️ | !["Cell Block A"](./image%20assets/Discord%20App%20Assets/map_cell_block_a.png) |
-|map_cell_block_b| MapAsset | ✔️ | !["Cell Block B"](./image%20assets/Discord%20App%20Assets/map_cell_block_b.png) |
-|map_cell_a207| MapAsset | ✔️ | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png) |
-|map_cell_a103| MapAsset | ✔️ | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png) |
-|map_bathroom| MapAsset | ✔️ | !["Bathroom"](./image%20assets/Discord%20App%20Assets/map_bathroom.png) |
-|map_general_building| MapAsset | ✔️ | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png) ||
-|map_barbershop| MapAsset | ❌ | |
-|map_chapel| MapAsset | ✔️ | !["Chapel"](./image%20assets/Discord%20App%20Assets/map_chapel.png) |
-|map_cafeteria| MapAsset | ✔️ | !["Cafeteria"](./image%20assets/Discord%20App%20Assets/map_cafeteria.png) |
-|map_hiding_place| MapAsset | ❌ | |
-|map_infirmary| MapAsset | ❌ | |
-|map_segregation| MapAsset | ✔️ | !["Segregation"](./image%20assets/Discord%20App%20Assets/map_segregation.png) |
-|map_laundry_room| MapAsset | ❌ | |
-|map_sewage_treatment_room| MapAsset | ❌ | |
-|map_kitchen| MapAsset | ❌ | |
-|map_guards_room| MapAsset | ❌ | |
-|map_roof_site| MapAsset | ✔️ | !["Roof Site"](./image%20assets/Discord%20App%20Assets/map_roof_site.png) |
-|map_wardens_office| MapAsset | ❌ | |
-|map_visit_room| MapAsset | ❌ | |
-|map_conjugal_visit_room| MapAsset | ❌ | |
-|map_court| MapAsset | ❌ | |
-|map_pipe_area| MapAsset | ❌ | |
-|map_central_garden| MapAsset | ❌ | |
-|map_sewage_pipe| MapAsset | ❌ | |
-|map_sewer| MapAsset | ❌ | |
-|map_mixing_room| MapAsset | ❌ | |
-|map_mailroom| MapAsset | ❌ | |
-|map_apartment_block| MapAsset | ❌ | |
-|map_college_dorm| MapAsset | ❌ | |
-|map_inmate_property_storeroom| MapAsset | ❌ | |
-|map_back_room_club| MapAsset | ❌ | |
-|map_rooftop_tool_shed| MapAsset | ✔️ | !["Rooftop Tool Shed"](./image%20assets/Discord%20App%20Assets/map_rooftop_tool_shed.png) |
-|map_fallen_angels| MapAsset | ❌ | |
-|map_private_room| MapAsset | ❌ | |
-|map_backstage_corridor| MapAsset | ❌ | |
-|map_dressing_room| MapAsset | ❌ | |
-|map_inner_hall| MapAsset | ❌ | |
-|map_chaplains_lounge| MapAsset | ❌ | |
-|map_kitchen_cellar| MapAsset | ❌ | |
-|map_cooking_room| MapAsset | ❌ | |
-|map_operating_room| MapAsset | ❌ | |
-|map_electrical_room| MapAsset | ❌ | |
-|map_house_in_the_suburbs| MapAsset | ❌ | |
-|map_road_in_the_suburbs| MapAsset | ❌ | |
-|map_visitation_corridor| MapAsset | ❌ | |
-|map_ground_behind_infirmary| MapAsset | ❌ | |
-|map_prison_cell_tower| MapAsset | ❌ | |
-|map_drain_depths| MapAsset | ❌ | |
-|map_tv_building| MapAsset | ❌ | |
-|map_hospital_ward| MapAsset | ❌ | |
-|map_city_cemetery| MapAsset | ❌ | |
-|map_border_checkpoints| MapAsset | ❌ | |
-|map_fighters_room| MapAsset | ❌ | |
-|map_vip_box| MapAsset | ❌ | |
-|map_boxing_ring| MapAsset | ✔️ | !["Boxing Ring"](./image%20assets/Discord%20App%20Assets/map_boxing_ring.png) |
-|map_casino_alley| MapAsset | ❌ | |
-|character_thomas| CharacterAsset | ✔️ | !["Thomas"](./image%20assets/Discord%20App%20Assets/character_thomas.png) |
-|character_reed| CharacterAsset | ✔️ | !["Reed"](./image%20assets/Discord%20App%20Assets/character_reed.png) |
-|character_bob| CharacterAsset | ✔️ | !["Bob"](./image%20assets/Discord%20App%20Assets/character_bob.png)|
+| Identifier                    | Type           | Status | Image                                                                                     |
+|-------------------------------|----------------|--------|-------------------------------------------------------------------------------------------|
+| main_menu                     | MapAsset       | ✔️     | !["Main Menu"](./image%20assets/Discord%20App%20Assets/main_menu.png)                     |
+| map_recreation_yard           | MapAsset       | ✔️     | !["Recreation Yard"](./image%20assets/Discord%20App%20Assets/map_recreation_yard.png)     |
+| map_main_building             | MapAsset       | ✔️     | !["Main Building"](./image%20assets/Discord%20App%20Assets/map_main_building.png)         |
+| map_cell_block_a              | MapAsset       | ✔️     | !["Cell Block A"](./image%20assets/Discord%20App%20Assets/map_cell_block_a.png)           |
+| map_cell_block_b              | MapAsset       | ✔️     | !["Cell Block B"](./image%20assets/Discord%20App%20Assets/map_cell_block_b.png)           |
+| map_cell_a207                 | MapAsset       | ✔️     | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png)                 |
+| map_cell_a103                 | MapAsset       | ✔️     | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png)                 |
+| map_bathroom                  | MapAsset       | ✔️     | !["Bathroom"](./image%20assets/Discord%20App%20Assets/map_bathroom.png)                   |
+| map_general_building          | MapAsset       | ✔️     | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png)   ||
+| map_barbershop                | MapAsset       | ❌      |                                                                                           |
+| map_chapel                    | MapAsset       | ✔️     | !["Chapel"](./image%20assets/Discord%20App%20Assets/map_chapel.png)                       |
+| map_cafeteria                 | MapAsset       | ✔️     | !["Cafeteria"](./image%20assets/Discord%20App%20Assets/map_cafeteria.png)                 |
+| map_hiding_place              | MapAsset       | ❌      |                                                                                           |
+| map_infirmary                 | MapAsset       | ❌      |                                                                                           |
+| map_segregation               | MapAsset       | ✔️     | !["Segregation"](./image%20assets/Discord%20App%20Assets/map_segregation.png)             |
+| map_laundry_room              | MapAsset       | ❌      |                                                                                           |
+| map_sewage_treatment_room     | MapAsset       | ❌      |                                                                                           |
+| map_kitchen                   | MapAsset       | ❌      |                                                                                           |
+| map_guards_room               | MapAsset       | ❌      |                                                                                           |
+| map_roof_site                 | MapAsset       | ✔️     | !["Roof Site"](./image%20assets/Discord%20App%20Assets/map_roof_site.png)                 |
+| map_wardens_office            | MapAsset       | ❌      |                                                                                           |
+| map_visit_room                | MapAsset       | ❌      |                                                                                           |
+| map_conjugal_visit_room       | MapAsset       | ❌      |                                                                                           |
+| map_court                     | MapAsset       | ❌      |                                                                                           |
+| map_pipe_area                 | MapAsset       | ❌      |                                                                                           |
+| map_central_garden            | MapAsset       | ❌      |                                                                                           |
+| map_sewage_pipe               | MapAsset       | ❌      |                                                                                           |
+| map_sewer                     | MapAsset       | ❌      |                                                                                           |
+| map_mixing_room               | MapAsset       | ❌      |                                                                                           |
+| map_mailroom                  | MapAsset       | ❌      |                                                                                           |
+| map_apartment_block           | MapAsset       | ❌      |                                                                                           |
+| map_college_dorm              | MapAsset       | ❌      |                                                                                           |
+| map_inmate_property_storeroom | MapAsset       | ❌      |                                                                                           |
+| map_back_room_club            | MapAsset       | ❌      |                                                                                           |
+| map_rooftop_tool_shed         | MapAsset       | ✔️     | !["Rooftop Tool Shed"](./image%20assets/Discord%20App%20Assets/map_rooftop_tool_shed.png) |
+| map_fallen_angels             | MapAsset       | ❌      |                                                                                           |
+| map_private_room              | MapAsset       | ❌      |                                                                                           |
+| map_backstage_corridor        | MapAsset       | ❌      |                                                                                           |
+| map_dressing_room             | MapAsset       | ❌      |                                                                                           |
+| map_inner_hall                | MapAsset       | ❌      |                                                                                           |
+| map_chaplains_lounge          | MapAsset       | ❌      |                                                                                           |
+| map_kitchen_cellar            | MapAsset       | ❌      |                                                                                           |
+| map_cooking_room              | MapAsset       | ❌      |                                                                                           |
+| map_operating_room            | MapAsset       | ❌      |                                                                                           |
+| map_electrical_room           | MapAsset       | ❌      |                                                                                           |
+| map_house_in_the_suburbs      | MapAsset       | ❌      |                                                                                           |
+| map_road_in_the_suburbs       | MapAsset       | ❌      |                                                                                           |
+| map_visitation_corridor       | MapAsset       | ❌      |                                                                                           |
+| map_ground_behind_infirmary   | MapAsset       | ❌      |                                                                                           |
+| map_prison_cell_tower         | MapAsset       | ❌      |                                                                                           |
+| map_drain_depths              | MapAsset       | ❌      |                                                                                           |
+| map_tv_building               | MapAsset       | ❌      |                                                                                           |
+| map_hospital_ward             | MapAsset       | ❌      |                                                                                           |
+| map_city_cemetery             | MapAsset       | ❌      |                                                                                           |
+| map_border_checkpoints        | MapAsset       | ❌      |                                                                                           |
+| map_fighters_room             | MapAsset       | ❌      |                                                                                           |
+| map_vip_box                   | MapAsset       | ❌      |                                                                                           |
+| map_boxing_ring               | MapAsset       | ✔️     | !["Boxing Ring"](./image%20assets/Discord%20App%20Assets/map_boxing_ring.png)             |
+| map_casino_alley              | MapAsset       | ❌      |                                                                                           |
+| character_thomas              | CharacterAsset | ✔️     | !["Thomas"](./image%20assets/Discord%20App%20Assets/character_thomas.png)                 |
+| character_reed                | CharacterAsset | ✔️     | !["Reed"](./image%20assets/Discord%20App%20Assets/character_reed.png)                     |
+| character_bob                 | CharacterAsset | ✔️     | !["Bob"](./image%20assets/Discord%20App%20Assets/character_bob.png)                       |
