@@ -1,7 +1,7 @@
 # Rich Discord Presence for Back to the Dawn
 
 ## Description
-A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that adds rich discord presence support for the game [Back to the Dawn](https://store.steampowered.com/app/1735700/Back_to_the_Dawn/).
+A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that adds rich discord presence support for the game [Back to the Dawn](https://store.steampowered.com/app/1735700/Back_to_the_Dawn/). It uses the [Discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started) to communicate with Discord to set the rich presence. Internally it uses [Monomod Runtime detours](https://github.com/MonoMod/MonoMod/blob/reorganize/docs/RuntimeDetour.HookGen/Usage.md) for game functions to keep track of the current game state, which is then interpreted to define the rich presence.
 
 ## Features
 ![Starting Game Presence](./image%20assets/Readme/StartDRP.png)
@@ -15,16 +15,15 @@ At the time of writing the images for locations are incomplete.
 
 ### Playing as
 
-#### Playing as Thomas
-![Showing playing as character](./image%20assets/Readme/LocationDRP.png)
-
-#### Playing as Bob
-![Showing playing as different character 1](./image%20assets/Readme/PlayingAsDRP1.png)
-
-#### Playing as Reed
-![Showing playing as different character 2](./image%20assets/Readme/PlayingAsDRP2.png)
+| Character | Image                                                              |
+|-----------|--------------------------------------------------------------------|
+| Thomas    | ![Show playing as Thomas](./image%20assets/Readme/LocationDRP.png) |
+| Bob       | ![Show playing as bob](./image%20assets/Readme/PlayingAsDRP1.png)  |
+| Reed      | ![Show playing as Reed](./image%20assets/Readme/PlayingAsDRP2.png) |
 
 ### Save DateTime
+In-game time is shown as Day X [HH:mm] where `HH` is 24 hours time and `mm` always shows two digits.
+
 ![Showing in-game time](./image%20assets/Readme/LocationDRP.png)
 
 ### Battle Detection
@@ -49,8 +48,11 @@ Simply have Discord open while running the game.
 If you notice that your presence is changed to playing Back to the Dawn but no other information is visible it may be that Discord has auto-detected Back to the Dawn and is showing that instead of the rich presence.
 In order to solve this, disable detection of the Back to the Dawn game with a verified mark under Discord User Settings -> Activity Settings -> Registered Games.
 
+![Discord settings disable BTTD detection](./image%20assets/Readme/Disable%20BTTD%20Steam%20Detection.png)
+*Ensure the eye icon which is for detection is red or disabled*
+
 ### Windows
-Things should work out of the box.
+Things should work out of the box... If not please create an issue.
 
 ### Linux
 Your mileage may vary, it appears that the native Discord client works just fine (provided you define a RPC bridge, if needed). If you are using a solution that relies on [arrpc](https://arrpc.openasar.dev/) you may find that the game process detectables trumps this mod (refer to [detectables.json](https://github.com/OpenAsar/arrpc/blob/main/src/process/detectable.json)).
