@@ -12,9 +12,11 @@ using Data;
 /// </summary>
 public class DiscordRichPresence
 {
-    // ReSharper disable once InconsistentNaming
-    [CanBeNull]
-    [NonSerialized]
+    /// <summary>
+    /// Called on a successful connection to the discord client.
+    /// </summary>
+    public Action OnSuccessfulConnection;
+
     private Discord client;
 
     private long startTimestamp;
@@ -115,6 +117,7 @@ public class DiscordRichPresence
         {
             this.client = new Discord(Constants.AppId, (ulong)CreateFlags.NoRequireDiscord);
             Plugin.Log.LogInfo("Client created.");
+            this.OnSuccessfulConnection?.Invoke();
         }
         catch (Exception ex)
         {

@@ -31,6 +31,7 @@ public class BTTDRichPresence : MonoBehaviour
         this.gameStateEvaluator ??= new GameStateEvaluator();
         this.gameStateEvaluator.DefineHooks();
         this.discordRichPresence ??= new DiscordRichPresence();
+        this.discordRichPresence.OnSuccessfulConnection += this.OnSuccessfulDiscordClientConnection;
         this.discordRichPresence.Start();
         lastActivityUpdateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
     }
@@ -90,5 +91,11 @@ public class BTTDRichPresence : MonoBehaviour
                     Plugin.Log.LogWarning($"Failed to update activity: {result}");
                 }
             });
+    }
+
+    private void OnSuccessfulDiscordClientConnection()
+    {
+        // Setting initial presence
+        this.UpdateRichPresence();
     }
 }
