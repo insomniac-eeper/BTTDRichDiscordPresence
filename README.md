@@ -88,12 +88,12 @@ This needs to be done manually until an extra build task is added.
 | map_cell_a207                 | MapAsset       | ✔️     | !["Cell A207"](./image%20assets/Discord%20App%20Assets/map_cell_a207.png)                 |
 | map_cell_a103                 | MapAsset       | ✔️     | !["Cell A103"](./image%20assets/Discord%20App%20Assets/map_cell_a103.png)                 |
 | map_bathroom                  | MapAsset       | ✔️     | !["Bathroom"](./image%20assets/Discord%20App%20Assets/map_bathroom.png)                   |
-| map_general_building          | MapAsset       | ✔️     | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png)   ||
+| map_general_building          | MapAsset       | ✔️     | !["General Building"](./image%20assets/Discord%20App%20Assets/map_general_building.png)   |
 | map_barbershop                | MapAsset       | ❌      |                                                                                           |
 | map_chapel                    | MapAsset       | ✔️     | !["Chapel"](./image%20assets/Discord%20App%20Assets/map_chapel.png)                       |
 | map_cafeteria                 | MapAsset       | ✔️     | !["Cafeteria"](./image%20assets/Discord%20App%20Assets/map_cafeteria.png)                 |
 | map_hiding_place              | MapAsset       | ❌      |                                                                                           |
-| map_infirmary                 | MapAsset       | ❌      |                                                                                           |
+| map_infirmary                 | MapAsset       | ✔️     | !["Infirmary"](./image%20assets/Discord%20App%20Assets/map_infirmary.png)                 |
 | map_segregation               | MapAsset       | ✔️     | !["Segregation"](./image%20assets/Discord%20App%20Assets/map_segregation.png)             |
 | map_laundry_room              | MapAsset       | ❌      |                                                                                           |
 | map_sewage_treatment_room     | MapAsset       | ❌      |                                                                                           |
