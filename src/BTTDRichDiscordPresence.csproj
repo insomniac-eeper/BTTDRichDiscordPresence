@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <Import Project="./BTTDCommon.props"/>
+    <Import Project="../build/GetDiscordSDK.targets" />
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
@@ -41,17 +42,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="external\discordsdk\native\">
-        <Link>external\discordsdk\native</Link>
-      </Folder>
-    </ItemGroup>
-
-    <ItemGroup>
         <None Update="external/discordsdk/native/discord_game_sdk.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="external/discordsdk/native/discord_game_sdk.dll.lib">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <Link>%(Filename)%(Extension)</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

@@ -1,0 +1,101 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+	  <DiscordSDKDownloaded>false</DiscordSDKDownloaded>
+	
+	  <!-- Discord GameSDK URL -->
+      <DiscordSDKBaseURL>https://dl-game-sdk.discordapp.net/</DiscordSDKBaseURL>
+	  <DiscordSDKVersion>2.5.6</DiscordSDKVersion>
+	  <DiscordSDKFilename>discord_game_sdk.zip</DiscordSDKFilename>
+	  <DiscordSDKURL>$(DiscordSDKBaseURL)$(DiscordSDKVersion)/$(DiscordSDKFilename)</DiscordSDKURL>
+	  <TempPath>_tmp/</TempPath>
+	  <TempDownloadPath>$(TempPath)download/</TempDownloadPath>
+	  <TempUnzipPath>$(TempPath)unzip/</TempUnzipPath>
+	  <DiscordSdkRelativePath>external/discordsdk/</DiscordSdkRelativePath>
+	  <DiscordSdkCSharpSubdir>csharp/</DiscordSdkCSharpSubdir>
+	  <DiscordSdkNativeSubdir>native/</DiscordSdkNativeSubdir>
+	  <DiscordSdkNativeDir>lib/</DiscordSdkNativeDir>
+	  <DiscordSdkNativeTargetArch>x86_64</DiscordSdkNativeTargetArch>
+	  
+	  <DiscordSdkCSharpSourceDir>$(TempUnzipPath)$(DiscordSdkCSharpSubdir)</DiscordSdkCSharpSourceDir>
+	  <DiscordSdkNativeSourceDir>$(TempUnzipPath)$(DiscordSdkNativeDir)$(DiscordSdkNativeTargetArch)\</DiscordSdkNativeSourceDir>
+	  <DiscordSdkCSharpRelativeDestDir>$(DiscordSdkRelativePath)$(DiscordSdkCSharpSubdir)</DiscordSdkCSharpRelativeDestDir>
+	  <DiscordSdkNativeRelativeDestDir>$(DiscordSdkRelativePath)$(DiscordSdkNativeSubdir)</DiscordSdkNativeRelativeDestDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+	  <!-- Discord SDK C# Source files -->
+	  <DiscordCSharpSdkFiles Include="ActivityManager.cs" />
+	  <DiscordCSharpSdkFiles Include="Constants.cs" />
+	  <DiscordCSharpSdkFiles Include="Core.cs" />
+	  <DiscordCSharpSdkFiles Include="ImageManager.cs" />
+	  <DiscordCSharpSdkFiles Include="LobbyManager.cs" />
+	  <DiscordCSharpSdkFiles Include="StorageManager.cs" />
+	  <DiscordCSharpSdkFiles Include="StoreManager.cs" />
+	  
+	  <!-- Discord Game SDK Native Dll -->
+	  <DiscordNativeSdkFiles Include="discord_game_sdk.dll" />
+    </ItemGroup>
+
+    <Target Name="EnsureDiscordSDK" BeforeTargets="PrepareForBuild">
+      <CallTarget Targets="DownloadDiscordSDK" Condition="$(DiscordSDKDownloaded) == 'false'" />
+    </Target>
+
+    <Target Name="DownloadDiscordSDK">
+	  <PropertyGroup>
+        <DiscordSDKDownloaded>true</DiscordSDKDownloaded>
+      </PropertyGroup>
+	
+	  <Exec Command="echo Checking for Discord GameSDK files..."/>
+	
+      <ItemGroup>
+        <MissingCsharpFiles Include="@(DiscordCSharpSdkFiles)" Condition="!Exists('$(DiscordSdkCSharpRelativeDestDir)%(Filename)%(Extension)')" />
+		<MissingNativeFiles Include="@(DiscordNativeSdkFiles)" Condition="!Exists('$(DiscordSdkNativeRelativeDestDir)%(Filename)%(Extension)')" />
+	  </ItemGroup>
+	  
+	  <PropertyGroup>
+	    <MissingCSharp Condition="@(MissingCsharpFiles->Count()) &gt; 0">true</MissingCSharp>
+		<MissingNative Condition="@(MissingNativeFiles->Count()) &gt; 0">true</MissingNative>
+	    <MissingFiles Condition="$(MissingCSharp) != '' Or $(MissingNative) != ''">true</MissingFiles>  
+	  </PropertyGroup>
+	  
+	  <Message Text="Some files are missing. Downloading Discord SDK..." Importance="high" Condition="$(MissingFiles) != ''"/>
+	  <DownloadFile SourceUrl="$(DiscordSDKURL)" DestinationFolder="$(TempDownloadPath)" Condition="$(MissingFiles) != ''" />
+	  
+	  <Message Text="Unzipping downloaded file..." Importance="high" Condition="$(MissingFiles) != ''"/>
+	  <Unzip
+	        Condition="$(MissingFiles) != ''"
+            SourceFiles="$(TempDownloadPath)$(DiscordSDKFilename)"
+            DestinationFolder="$(TempUnzipPath)"
+            OverwriteReadOnlyFiles="true"
+      />
+
+      <Message Text="Copying missing C# source files..." Importance="high" Condition="$(MissingCSharp) != ''"/>
+      <Copy 
+        SourceFiles="@(MissingCsharpFiles->'$(DiscordSdkCSharpSourceDir)%(Filename)%(Extension)')" 
+        DestinationFiles="@(MissingCsharpFiles->'$(DiscordSdkCSharpRelativeDestDir)%(Filename)%(Extension)')" 
+        Condition="$(MissingCSharp) != ''"/>
+	
+	  <Message Text="Copying missing native dlls..." Importance="high" Condition="$(MissingNative) != ''"/>
+	  <Copy 
+        SourceFiles="@(MissingNativeFiles->'$(DiscordSdkNativeSourceDir)%(Filename)%(Extension)')" 
+        DestinationFiles="@(MissingNativeFiles->'$(DiscordSdkNativeRelativeDestDir)%(Filename)%(Extension)')" 
+        Condition="$(MissingNative) != ''"/>
+      
+	  <!-- Cleanup -->
+	  
+	  <Delete Files="$(TempUnzipPath)/**/*.*" Condition="$(MissingFiles) != ''"/>
+      <RemoveDir Directories="$(TempUnzipPath)" Condition="$(MissingFiles) != ''"/>
+      <Delete Files="$(TempDownloadPath)$(DiscordSDKFilename)" Condition="$(MissingFiles) != ''"/>
+	  <RemoveDir Directories="$(TempDownloadPath)" Condition="$(MissingFiles) != ''"/>
+	  <RemoveDir Directories="$(TempPath)" Condition="$(MissingFiles) != ''"/>
+	
+	</Target>
+	
+	<Target Name="EnsureCompileIncludesDownloadedFiles" AfterTargets="DownloadDiscordSDK">
+      <ItemGroup>
+        <Compile Include="$(DiscordSdkCSharpRelativeDestDir)**\*.cs" />
+      </ItemGroup>
+	</Target>
+
+</Project>
