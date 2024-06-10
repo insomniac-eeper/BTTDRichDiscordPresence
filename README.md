@@ -1,5 +1,10 @@
 # Rich Discord Presence for Back to the Dawn
 
+## Compatible version
+- Game : **1.3.82.10-RC**
+- BepInEx: **5.4.22**
+- Steam Build ID: **13665081**
+
 ## Description
 A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that adds rich discord presence support for the game [Back to the Dawn](https://store.steampowered.com/app/1735700/Back_to_the_Dawn/). It uses the [Discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started) to communicate with Discord to set the rich presence. Internally it uses [Monomod Runtime detours](https://github.com/MonoMod/MonoMod/blob/reorganize/docs/RuntimeDetour.HookGen/Usage.md) for game functions to keep track of the current game state, which is then interpreted to define the rich presence.
 
