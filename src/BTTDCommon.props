@@ -24,12 +24,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!-- Allows to interact with private fields of classes -->
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-
         <!-- Determines the version of the plugin by using git tags -->
         <PackageReference Include="MinVer" Version="4.3.0">
             <PrivateAssets>all</PrivateAssets>
@@ -43,10 +37,10 @@
 
     <!-- Reference to the game assemblies -->
     <!-- On local build, the assemblies are present in the game directory -->
-    <ItemGroup Condition="$(CI) != 'true'">
+    <!--<ItemGroup Condition="$(CI) != 'true'"> -->
         <!-- List of game assembly to include as reference -->
-        <DllNames Include="Assembly-CSharp" Publicize="true" />
-		<DllNames Include="Assembly-CSharp-firstpass" Publicize="true" />
+        <!--<DllNames Include="Assembly-CSharp" />
+		<DllNames Include="Assembly-CSharp-firstpass" />
         <DllNames Include="Il2Cppmscorlib" />
         <DllNames Include="Il2CppSystem.Core" />
         <DllNames Include="Il2CppSystem" />
@@ -56,10 +50,5 @@
         <DllNames Include="UnityEngine.CoreModule" />
 
         <Reference Include="@(DllNames)" HintPath="$(InteropAssemblyDir)%(Identity).dll"/>
-    </ItemGroup>
-
-    <!-- On CI build, the assemblies are downloaded from NuGet -->
-    <ItemGroup Condition="$(CI) == 'true'">
-        <PackageReference Include="BackToTheDawn.GameLibs.Steam" Version="$(GameVersion)" PrivateAssets="all" />
-    </ItemGroup>
+    </ItemGroup> -->
 </Project>
