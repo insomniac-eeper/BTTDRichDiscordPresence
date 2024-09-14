@@ -1,5 +1,9 @@
 # Rich Discord Presence for Back to the Dawn
 
+>[!Caution]
+> Back to the Dawn has switched from using mono to using il2cpp which means that this mod needs to use BepInEx 6.....
+> The latest state of main has the necessary changes but readme changes are still TODO
+ 
 ## Compatible version
 - Game : **1.3.82.10-RC**
 - BepInEx: **5.4.22**
