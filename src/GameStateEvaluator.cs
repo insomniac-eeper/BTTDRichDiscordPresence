@@ -1,6 +1,7 @@
 ﻿namespace BTTDRichDiscordPresence;
 
 using Data;
+using Events;
 
 /// <summary>
 /// Maintains a record of the current game state by using runtime detours on in-game functions.
@@ -23,9 +24,8 @@ public class GameStateEvaluator
     /// </remarks>
     public void DefineHooks()
     {
-        On.GameManage.ReadArchiveDataAndStartGame += (orig, gameManager, archiveId) =>
+        EventManager.GameManageEvents.OnReadArchiveDataAndStartGame += () =>
         {
-            orig(gameManager, archiveId);
             var time = TimeManage.FormatTime(GameProcess.singleton.gameTime);
 
             this.GameState = this.GameState with
@@ -36,27 +36,25 @@ public class GameStateEvaluator
             };
         };
 
-        On.MapManage.SetCurrentMapAndShow += (orig, map) =>
+        EventManager.MapManageEvents.OnSetCurrentMapAndShow += map =>
         {
-            orig(map);
+            this.GameState = this.GameState with
+            {
+                Map = Maps.Get(map.id)
+            };
+        };
+
+        // This no longer seems to be used since SetFocus is no longer an accessible MapManaage function
+        EventManager.MapManageEvents.OnSetFocus += map =>
+        {
             this.GameState = GameState with
             {
                 Map = Maps.Get(map.id)
             };
         };
 
-        On.Map.SetFocus += (orig, map, isFocus) =>
+        EventManager.GameManageEvents.OnEndGameToReStart += () =>
         {
-            orig(map, isFocus);
-            this.GameState = GameState with
-            {
-                Map = Maps.Get(map.id)
-            };
-        };
-
-        On.GameManage.EndGameToReStart += (orig, gameManage, immediateStartId) =>
-        {
-            orig(gameManage, immediateStartId);
             this.GameState = GameState with
             {
                 IsInMainMenu = true,
@@ -64,20 +62,17 @@ public class GameStateEvaluator
             };
         };
 
-        On.GameProcess.PassMinutes_TimePass += (orig, gameProcess, minutes) =>
+        EventManager.GameProcessEvents.OnPassMinutes_TimePass += (gameProcess, _) =>
         {
-            var ret = orig(gameProcess, minutes);
             var time = TimeManage.FormatTime(gameProcess.gameTime);
             this.GameState = GameState with
             {
                 DateTime = new GameTime(gameProcess.allDay + 1, time.hour, time.minute)
             };
-            return ret;
         };
 
-        On.UI_Battle2.Awake += (orig, uiBattle2) =>
+        EventManager.UI_Battle2Events.OnAwake += (uiBattle2) =>
         {
-            orig(uiBattle2);
             var battleManage = uiBattle2.battleManage2;
             var protagonistFighter = battleManage.protagonistPlayer;
             var enemyFighter = battleManage.leftBattlePlayer == protagonistFighter ?
@@ -91,9 +86,8 @@ public class GameStateEvaluator
             };
         };
 
-        On.BattleManage2.EndBattle += (orig, battleManage2) =>
+        EventManager.BattleManage2Events.OnEndBattle += (_) =>
         {
-            orig(battleManage2);
             this.GameState = GameState with
             {
                 Battle = null
@@ -102,9 +96,8 @@ public class GameStateEvaluator
 
         // UI_Battle (as opposed to UI_Battle2) is used for spectating battles where the player is not involved.
 
-        On.CharacterManage.SetProtagonist += (orig, protagonist) =>
+        EventManager.CharacterManageEvents.OnSetProtagonist += (protagonist) =>
         {
-            orig(protagonist);
             // Usually this protagonistId is set first via <see cref="InitManage"/> and then this function is called.
             // However since I am using this function to test and change characters I also need to set this here since
             // several checks rely on GameProcess.singleton.protagonistId.
@@ -118,14 +111,12 @@ public class GameStateEvaluator
         // When playing as Reed the protagonist doesn't change, rather the sprite and animation
         // of the protagonist do. Rather than expressing this nuance I chose to simply set the
         // gamestate with Reed as the protagonist and switch back when appropriate.
-        On.CharacterAnimationBasicConfig.IsShowLeiDeClub += (orig, character) =>
+        EventManager.CharacterAnimationBasicConfigEvents.OnIsShowLeiDeClubPost += (ret, character) =>
         {
-            var ret = orig(character);
-
             //  This function is applied to all characters and run often so an early return is necessary.
             if (character.attribute.id != GameProcess.singleton.protagonistId)
             {
-                return ret;
+                return;
             }
 
             // If we no longer are playing as Reed we need to switch back to the original protagonist.
@@ -153,8 +144,6 @@ public class GameStateEvaluator
                     };
                 }
             }
-
-            return ret;
         };
     }
 }
