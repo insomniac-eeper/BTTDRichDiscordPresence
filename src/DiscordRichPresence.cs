@@ -3,7 +3,6 @@ namespace BTTDRichDiscordPresence;
 
 using System;
 using Discord;
-using JetBrains.Annotations;
 
 using Data;
 
@@ -107,7 +106,6 @@ public class DiscordRichPresence
             this.client?.Dispose();
             this.client = null;
         }
-
     }
 
     private bool RegisterClient()
