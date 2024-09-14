@@ -94,6 +94,7 @@
 
   <Target Name="EnsureCompileIncludesDownloadedFiles" AfterTargets="DownloadDiscordSDK">
     <ItemGroup>
+      <Compile Remove="$(DiscordSdkCSharpRelativeDestDir)**\*.cs" />
       <Compile Include="$(DiscordSdkCSharpRelativeDestDir)**\*.cs" />
     </ItemGroup>
   </Target>
