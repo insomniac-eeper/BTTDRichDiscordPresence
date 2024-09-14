@@ -4,7 +4,7 @@
     <Import Project="../build/GetDiscordSDK.targets" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>BTTDRichDiscordPresence</AssemblyName>
         <Description>Add Discord Rich Presence Support.</Description>
         <Product>BTTDRichDiscordPresence</Product>
@@ -28,17 +28,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Reference Include="MMHOOK_Assembly-CSharp">
-            <HintPath>$(PluginGameDir)MMHOOK\MMHOOK_Assembly-CSharp.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
-        <PackageReference Include="BepInEx.Core" Version="5.*"/>
-        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
-
-        <PackageReference Include="UnityEngine.Modules" Version="2021.2.3" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
     </ItemGroup>
 
     <ItemGroup>

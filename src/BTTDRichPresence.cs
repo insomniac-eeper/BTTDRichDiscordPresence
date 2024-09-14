@@ -10,7 +10,7 @@ using UnityEngine;
 /// <summary>
 /// Interacts with BTTD to determine rich discord presence.
 /// </summary>
-public class BTTDRichPresence : MonoBehaviour
+public class BTTDRichPresence(IntPtr ptr) : MonoBehaviour(ptr)
 {
 
     private DiscordRichPresence discordRichPresence;

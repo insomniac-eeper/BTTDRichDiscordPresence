@@ -7,8 +7,11 @@
         <!-- PROGRA~1 is the short path for Program Files -->
         <!-- PROGRA~2 is the short path for Program Files (x86) -->
         <GameDir>D:\SteamLibrary\steamapps\common\MetalHeadGames\</GameDir>
+        <BepInExDir>$(GameDir)BepInEx</BepInExDir>
+
         <!-- Path of the game's plugin directory where the built plugin will be copied to -->
-        <PluginGameDir>$(GameDir)BepInEx\plugins\</PluginGameDir>
+        <PluginGameDir>$(BepInExDir)\plugins\</PluginGameDir>
+        <InteropAssemblyDir>$(BepInExDir)\interop\</InteropAssemblyDir>
         <!-- Path of the game's managed directory where the game's dlls are located -->
         <AssemblyGameDir>$(GameDir)Back To The Dawn_Data\Managed\</AssemblyGameDir>
         <!-- Name of the game executable -->
@@ -44,9 +47,15 @@
         <!-- List of game assembly to include as reference -->
         <DllNames Include="Assembly-CSharp" Publicize="true" />
 		<DllNames Include="Assembly-CSharp-firstpass" Publicize="true" />
-        <DllNames Include="Unity.Netcode.Runtime" />
+        <DllNames Include="Il2Cppmscorlib" />
+        <DllNames Include="Il2CppSystem.Core" />
+        <DllNames Include="Il2CppSystem" />
+        <DllNames Include="Il2CppSystem.Configuration" />
+        <DllNames Include="Il2CppSystem.Core" />
+        <DllNames Include="UnityEngine" />
+        <DllNames Include="UnityEngine.CoreModule" />
 
-        <Reference Include="@(DllNames)" HintPath="$(AssemblyGameDir)%(Identity).dll"/>
+        <Reference Include="@(DllNames)" HintPath="$(InteropAssemblyDir)%(Identity).dll"/>
     </ItemGroup>
 
     <!-- On CI build, the assemblies are downloaded from NuGet -->

@@ -1,34 +1,31 @@
 ﻿namespace BTTDRichDiscordPresence;
 
+using System.Reflection;
 using BepInEx;
+using BepInEx.Unity.IL2CPP;
+using HarmonyLib;
+using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
 
 /// <summary>
-/// <see cref="BaseUnityPlugin"/> to add Discord Rich Presence Support.
+/// <see cref="BasePlugin"/> to add Discord Rich Presence Support.
 /// </summary>
-[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-public class Plugin : BaseUnityPlugin
+
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+public class Plugin : BasePlugin
 {
     /// <summary>
     /// Gets shared logging instance.
     /// </summary>
     public static BepInEx.Logging.ManualLogSource Log { get; private set; }
 
-    private void Awake()
+    public override void Load()
     {
-        Log = this.Logger;
-        this.Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+        Log = base.Log;
+        base.Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
-        var gObject = new GameObject(nameof(DiscordRichPresence));
-        try
-        {
-            gObject.AddComponent<BTTDRichPresence>();
-            GameObject.DontDestroyOnLoad(gObject);
-        }
-        catch (System.Exception e)
-        {
-            this.Logger.LogError($"Failed to create {nameof(DiscordRichPresence)}: {e}");
-            GameObject.Destroy(gObject);
-        }
+        this.AddComponent<BTTDRichPresence>();
+
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
     }
 }
