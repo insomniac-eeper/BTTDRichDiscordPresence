@@ -20,7 +20,7 @@
         <GameExePath>$(GameDir)$(GameExe)</GameExePath>
         <!-- Version of the game supported by the plugin -->
         <!-- The value must be the same than the one in CI/CD -->
-        <GameVersion>0.0.1</GameVersion>
+        <GameVersion>1.3.84.5-RC</GameVersion>
     </PropertyGroup>
 
     <ItemGroup>
