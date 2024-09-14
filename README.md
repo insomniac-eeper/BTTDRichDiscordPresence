@@ -1,5 +1,10 @@
 # Rich Discord Presence for Back to the Dawn
 
+## Compatible version
+- Game : **1.3.82.10-RC**
+- BepInEx: **5.4.22**
+- Steam Build ID: **13665081**
+
 ## Description
 A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that adds rich discord presence support for the game [Back to the Dawn](https://store.steampowered.com/app/1735700/Back_to_the_Dawn/). It uses the [Discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started) to communicate with Discord to set the rich presence. Internally it uses [Monomod Runtime detours](https://github.com/MonoMod/MonoMod/blob/reorganize/docs/RuntimeDetour.HookGen/Usage.md) for game functions to keep track of the current game state, which is then interpreted to define the rich presence.
 
@@ -62,9 +67,12 @@ Your mileage may vary, it appears that the native Discord client works just fine
 
 - Modify GameDir in Common.props to point to your game installation location
   - I should move this to csproj.user at some point...
-- Download [v2.5.6 of the discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started).
-  - Place the csharp library files into external/discordsdk/csharp
-  - Place the contents of lib/x86_64 into external/discordsdk/native
+- Opening the solution in Visual Studio or Rider should automatically download the appropriate [Discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started) files.
+  - This is done via the `./build/GetDiscordSDK.targets` file. Currently it is a bit brittle but was fun to make :)
+  - **If you have trouble with this and/or are using an SDK that does not attempt to resolve the references automatically** (thereby invoking the script) you an always download the SDK manually and put things into the appropropriate location.
+    - Download [v2.5.6 of the discord GameSDK](https://discord.com/developers/docs/game-sdk/getting-started).
+    - Place the csharp library files into external/discordsdk/csharp
+    - Place the contents of lib/x86_64 into external/discordsdk/native
 
 - Note that project build will try to copy plugin DLL to the BepInEx plugin directory **but will not copy discord sdk native dll**.
 This needs to be done manually until an extra build task is added.
