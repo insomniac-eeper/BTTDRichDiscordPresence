@@ -4,8 +4,6 @@ using System.Reflection;
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
-using Il2CppInterop.Runtime.Injection;
-using UnityEngine;
 
 /// <summary>
 /// <see cref="BasePlugin"/> to add Discord Rich Presence Support.

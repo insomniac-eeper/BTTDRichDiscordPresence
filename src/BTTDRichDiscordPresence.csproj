@@ -13,15 +13,6 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
 
-        <!-- Number of instances of the game to start to test the plugin -->
-        <NumberOfClients>1</NumberOfClients>
-        <!-- Delay between each start of the game in seconds -->
-        <DelayBetweenClientsInSeconds>5</DelayBetweenClientsInSeconds>
-        <!-- To apply the correct delay between each instance, we need to add 1 to the delay because the first "echo" sent by the ping command is instant -->
-        <PingDelay>$([MSBuild]::Add($(DelayBetweenClientsInSeconds), 1))</PingDelay>
-        <!-- True to start the game when the plugin is built, false to only copy the plugin to the game's plugin directory -->
-        <StartGame>false</StartGame>
-
         <MinVerTagPrefix>v</MinVerTagPrefix>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
@@ -55,12 +46,6 @@
         <!-- The move command will overwrite the plugin if it already exists and no error will be thrown -->
         <!-- We can't move the original plugin because it is used by reference for Test project -->
         <Move SourceFiles="$(TargetDir)$(TargetFileName).tmp" DestinationFiles="$(PluginGameDir)$(TargetFileName)"/>
-        <!-- Kill every instance of the game, ignore errors if none are running -->
-        <!-- <Exec Command='taskkill /F /IM "$(GameExe)" /T || exit 0'/> -->
-        <!-- Start new instances of the game as many times as specified in NumberOfClients -->
-        <!-- The ping command is used to apply a delay between each instance, otherwise only one BepInEx debug terminal would be opened -->
-        <!-- Use ping command is a workaround because Windows doesn't have a sleep command -->
-        <!-- <Exec Command='for /L %%i in (1,1,$(NumberOfClients)) do (start "" "$(GameExePath)" &amp; if %%i lss $(NumberOfClients) (ping 127.0.0.1 -n $(PingDelay) > nul))'/> -->
     </Target>
 
 </Project>
